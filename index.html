@@ -1,0 +1,2384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nadia Lee Zhi Ying — UI/UX Designer</title>
+  <meta name="description"
+    content="Portfolio of Nadia Lee Zhi Ying, UI/UX Designer crafting intuitive digital experiences.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --pink: #E8A0BF;
+      --pink-deep: #D4729C;
+      --lavender: #B5A8D5;
+      --lavender-deep: #8B7CB8;
+      --lilac: #EDE4F5;
+      --blush: #FFF0F5;
+      --cream: #FFFAF7;
+      --peach: #FFD6C0;
+      --text: #2D2640;
+      --text-light: #6B6280;
+      --bg: #FEFBFE;
+      --card: #FFFFFF;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    .display {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    /* Floating gradient blob */
+    .blob {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232, 160, 191, 0.10) 0%, rgba(181, 168, 213, 0.06) 50%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(60px);
+      top: 30%;
+      left: 40%;
+      animation: blob-drift 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes blob-drift {
+      0% {
+        transform: translate(0, 0);
+      }
+
+      33% {
+        transform: translate(120px, -80px);
+      }
+
+      66% {
+        transform: translate(-100px, 60px);
+      }
+
+      100% {
+        transform: translate(50px, -40px);
+      }
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.4s;
+    }
+
+    nav.scrolled {
+      background: rgba(254, 251, 254, 0.85);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 1px 20px rgba(45, 38, 64, 0.05);
+      padding: 1rem 3rem;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--pink-deep);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--pink-deep);
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(254, 251, 254, 0.98);
+      backdrop-filter: blur(30px);
+      z-index: 99;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    /* Shared */
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--pink-deep);
+      margin-bottom: 1rem;
+    }
+
+    .section-heading {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-heading em {
+      color: var(--lavender-deep);
+      font-style: italic;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .btn-pink {
+      background: var(--pink-deep);
+      color: #fff;
+    }
+
+    .btn-pink:hover {
+      background: #C05F87;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(212, 114, 156, 0.3);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid rgba(45, 38, 64, 0.15);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--lavender-deep);
+      color: var(--lavender-deep);
+      transform: translateY(-3px);
+    }
+
+    /* ==================== HERO (kept from v3) ==================== */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 6rem 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 1.25rem;
+      background: var(--lilac);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--lavender-deep);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-eyebrow .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--lavender-deep);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title .accent {
+      color: var(--pink-deep);
+    }
+
+    .hero-title .lavender {
+      color: var(--lavender-deep);
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      line-height: 1.8;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-img-wrapper {
+      position: relative;
+      width: 340px;
+      height: 340px;
+      overflow: hidden;
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      animation: morph 8s ease-in-out infinite;
+      box-shadow: 0 30px 80px rgba(212, 114, 156, 0.2);
+    }
+
+    .hero-img-wrapper img {
+      width: 140%;
+      height: 140%;
+      object-fit: cover;
+      position: absolute;
+      top: 65%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    @keyframes morph {
+
+      0%,
+      100% {
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      }
+
+      25% {
+        border-radius: 58% 42% 42% 58% / 55% 45% 55% 45%;
+      }
+
+      50% {
+        border-radius: 50% 50% 30% 70% / 55% 70% 30% 45%;
+      }
+
+      75% {
+        border-radius: 42% 58% 58% 42% / 45% 55% 45% 55%;
+      }
+    }
+
+    .hero-float-card {
+      position: absolute;
+      background: var(--card);
+      border-radius: 16px;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      animation: float-card 4s ease-in-out infinite;
+    }
+
+    .hero-float-card:nth-child(2) {
+      top: 10%;
+      right: -20px;
+      animation-delay: 0s;
+    }
+
+    .hero-float-card:nth-child(3) {
+      bottom: 15%;
+      left: -30px;
+      animation-delay: 1.5s;
+    }
+
+    .hero-float-card:nth-child(4) {
+      bottom: -10px;
+      right: 10%;
+      animation-delay: 3s;
+    }
+
+    @keyframes float-card {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .float-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .fi-pink {
+      background: var(--blush);
+    }
+
+    .fi-lilac {
+      background: var(--lilac);
+    }
+
+    .fi-peach {
+      background: #FFF0E5;
+    }
+
+    /* ==================== ABOUT — SPLIT SCREEN ==================== */
+    #about {
+      padding: 8rem 3rem;
+      background: var(--cream);
+    }
+
+    .about-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-left h2 {
+      margin-bottom: 1.5rem;
+    }
+
+    .about-left p {
+      color: var(--text-light);
+      line-height: 1.9;
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-left p.section-label {
+      font-size: 0.7rem;
+      color: var(--pink-deep);
+      line-height: normal;
+      margin-bottom: 1rem;
+    }
+
+    .about-left p strong {
+      color: var(--pink-deep);
+      font-weight: 600;
+    }
+
+    .about-left .edu-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem;
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid rgba(45, 38, 64, 0.05);
+      margin-top: 1.5rem;
+    }
+
+    .edu-row .edu-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--lilac);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .edu-row h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .edu-row p {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      margin: 0;
+    }
+
+    /* Counter cards */
+    .counter-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .counter-card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1px solid rgba(45, 38, 64, 0.04);
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .counter-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.4s;
+      border-radius: 20px;
+    }
+
+    .counter-card:nth-child(1)::before {
+      background: linear-gradient(135deg, var(--blush), transparent);
+    }
+
+    .counter-card:nth-child(2)::before {
+      background: linear-gradient(135deg, var(--lilac), transparent);
+    }
+
+    .counter-card:nth-child(3)::before {
+      background: linear-gradient(135deg, #FFF0E5, transparent);
+    }
+
+    .counter-card:nth-child(4)::before {
+      background: linear-gradient(135deg, var(--blush), transparent);
+    }
+
+    .counter-card:hover::before {
+      opacity: 1;
+    }
+
+    .counter-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(45, 38, 64, 0.08);
+    }
+
+    .counter-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--pink-deep), var(--lavender-deep));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      z-index: 1;
+    }
+
+    .counter-label {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      margin-top: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==================== PROJECTS — IMMERSIVE CARDS ==================== */
+    #work {
+      padding: 6rem 0;
+    }
+
+    .work-header {
+      padding: 0 3rem;
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+      text-align: center;
+    }
+
+    .project-section {
+      padding: 4rem 3rem;
+      position: relative;
+      transition: background 0.5s;
+    }
+
+    .project-section:nth-child(even) {
+      background: var(--cream);
+    }
+
+    .project-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .project-section:nth-child(even) .project-inner {
+      direction: rtl;
+    }
+
+    .project-section:nth-child(even) .project-inner>* {
+      direction: ltr;
+    }
+
+    .project-visual {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--lilac), var(--blush));
+      aspect-ratio: 4/3;
+    }
+
+    .project-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .project-visual:hover img {
+      transform: scale(1.04);
+    }
+
+    .project-visual-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(45, 38, 64, 0.04) 100%);
+      pointer-events: none;
+    }
+
+    /* Floating number badge */
+    .project-num {
+      position: absolute;
+      top: 1.5rem;
+      left: 1.5rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--pink-deep);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .project-content {}
+
+    .project-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1.25rem;
+    }
+
+    .ptag-pink {
+      background: var(--blush);
+      color: var(--pink-deep);
+    }
+
+    .ptag-lilac {
+      background: var(--lilac);
+      color: var(--lavender-deep);
+    }
+
+    .ptag-peach {
+      background: #FFF0E5;
+      color: #C07A4A;
+    }
+
+    .ptag-mint {
+      background: #E8F5EE;
+      color: #4A9C6E;
+    }
+
+    .project-title {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+
+    .project-desc {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Metric row */
+    .project-metrics {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      padding: 1.25rem 0;
+      border-top: 1px solid rgba(45, 38, 64, 0.06);
+      margin-bottom: 1.5rem;
+    }
+
+    .pm-item {}
+
+    .pm-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-light);
+    }
+
+    .pm-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 0.15rem;
+    }
+
+    .pm-value .up {
+      color: #4A9C6E;
+    }
+
+    .pm-value .down {
+      color: var(--pink-deep);
+    }
+
+    /* Expandable detail */
+    .project-expand-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--pink-deep);
+      margin-bottom: 0.75rem;
+    }
+
+    .project-detail-panel.open {
+      margin-top: 0;
+    }
+
+    .detail-bullets {
+      list-style: none;
+    }
+
+    .detail-bullets li {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      padding: 0.35rem 0 0.35rem 1.5rem;
+      position: relative;
+    }
+
+    .detail-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.85rem;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--pink);
+    }
+
+    .detail-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .dtag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      border: 1px solid var(--pink);
+      color: var(--pink-deep);
+    }
+
+    /* ==================== EXPERIENCE — ACCORDION ==================== */
+    #experience {
+      padding: 6rem 3rem;
+      background: var(--bg);
+    }
+
+    .exp-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .exp-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid rgba(45, 38, 64, 0.06);
+      overflow: hidden;
+    }
+
+    .accordion-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.75rem 0;
+      font-family: 'DM Sans', sans-serif;
+      text-align: left;
+    }
+
+    .acc-left {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .acc-company {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .acc-role {
+      font-size: 0.9rem;
+      color: var(--pink-deep);
+      font-weight: 500;
+    }
+
+    .acc-date {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--lavender-deep);
+      padding: 0.3rem 0.9rem;
+      background: var(--lilac);
+      border-radius: 100px;
+    }
+
+    .acc-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(45, 38, 64, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+
+    .acc-icon svg {
+      transition: transform 0.3s;
+      stroke: var(--text-light);
+    }
+
+    .accordion-item.open .acc-icon {
+      background: var(--blush);
+      border-color: var(--pink);
+    }
+
+    .accordion-item.open .acc-icon svg {
+      transform: rotate(45deg);
+      stroke: var(--pink-deep);
+    }
+
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.23, 1, 0.32, 1), padding 0.4s;
+      padding: 0 0;
+    }
+
+    .accordion-item.open .accordion-body {
+      max-height: 500px;
+      padding: 0 0 2rem;
+    }
+
+    .acc-bullets {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .acc-bullets li {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      padding: 0.35rem 0 0.35rem 1.5rem;
+      position: relative;
+    }
+
+    .acc-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.85rem;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--pink);
+    }
+
+    .nps-pill {
+      display: inline-block;
+      padding: 0.15rem 0.6rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .nps-neg {
+      background: rgba(212, 114, 156, 0.12);
+      color: var(--pink-deep);
+    }
+
+    .nps-pos {
+      background: rgba(74, 156, 110, 0.12);
+      color: #4A9C6E;
+    }
+
+    /* ==================== SKILLS (kept from v3) ==================== */
+    #skills {
+      padding: 6rem 3rem;
+      background: var(--cream);
+    }
+
+    .skills-container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .skills-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .skill-group {
+      margin-bottom: 3rem;
+    }
+
+    .skill-group h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-light);
+      margin-bottom: 1.25rem;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .skill-chip {
+      padding: 0.7rem 1.5rem;
+      border-radius: 100px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      cursor: default;
+    }
+
+    .skill-chip:hover {
+      transform: translateY(-3px) scale(1.05);
+    }
+
+    .chip-pink {
+      background: var(--blush);
+      color: var(--pink-deep);
+      border: 1px solid rgba(212, 114, 156, 0.15);
+    }
+
+    .chip-pink:hover {
+      box-shadow: 0 8px 24px rgba(212, 114, 156, 0.15);
+    }
+
+    .chip-lilac {
+      background: var(--lilac);
+      color: var(--lavender-deep);
+      border: 1px solid rgba(139, 124, 184, 0.15);
+    }
+
+    .chip-lilac:hover {
+      box-shadow: 0 8px 24px rgba(139, 124, 184, 0.15);
+    }
+
+    .chip-neutral {
+      background: rgba(45, 38, 64, 0.04);
+      color: var(--text-light);
+      border: 1px solid rgba(45, 38, 64, 0.06);
+    }
+
+    .chip-neutral:hover {
+      box-shadow: 0 8px 24px rgba(45, 38, 64, 0.08);
+      background: #fff;
+    }
+
+    /* ==================== CONTACT (kept from v3) ==================== */
+    #contact {
+      padding: 8rem 3rem;
+      text-align: center;
+      background: linear-gradient(180deg, var(--cream) 0%, var(--lilac) 100%);
+      position: relative;
+    }
+
+    .contact-container {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      padding: 2rem 3rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-light);
+      background: var(--lilac);
+    }
+
+    /* ==================== ANIMATIONS ==================== */
+    [data-anim] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    [data-anim].in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    [data-anim-delay="1"] {
+      transition-delay: 0.1s;
+    }
+
+    [data-anim-delay="2"] {
+      transition-delay: 0.2s;
+    }
+
+    [data-anim-delay="3"] {
+      transition-delay: 0.3s;
+    }
+
+    [data-anim-delay="4"] {
+      transition-delay: 0.4s;
+    }
+
+    [data-anim-delay="5"] {
+      transition-delay: 0.5s;
+    }
+
+    /* ==================== MODAL ==================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(45, 38, 64, 0.6);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s, visibility 0.35s;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-overlay.open .modal-container {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .modal-container {
+      background: var(--card);
+      border-radius: 24px;
+      width: 92vw;
+      max-width: 900px;
+      max-height: 88vh;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+      transform: translateY(30px);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s;
+    }
+
+    .modal-scroll {
+      overflow-y: auto;
+      max-height: 88vh;
+      padding: 3rem;
+    }
+
+    .modal-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .modal-scroll::-webkit-scrollbar-thumb {
+      background: var(--pink);
+      border-radius: 3px;
+    }
+
+    .modal-close {
+      position: sticky;
+      top: 0;
+      float: right;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--lilac);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: background 0.3s;
+      margin-bottom: -40px;
+    }
+
+    .modal-close:hover {
+      background: var(--pink);
+    }
+
+    .modal-close svg {
+      stroke: var(--text);
+    }
+
+    .modal-hero-img {
+      width: 100%;
+      border-radius: 16px;
+      margin-bottom: 2rem;
+      object-fit: cover;
+      max-height: 300px;
+    }
+
+    .modal-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-subtitle {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-meta {
+      display: flex;
+      gap: 3rem;
+      padding: 1rem 0;
+      border-top: 1px solid rgba(45, 38, 64, 0.06);
+      border-bottom: 1px solid rgba(45, 38, 64, 0.06);
+      margin-bottom: 2rem;
+    }
+
+    .modal-meta-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-light);
+    }
+
+    .modal-meta-value {
+      font-weight: 700;
+      color: var(--text);
+      margin-top: 0.1rem;
+    }
+
+    .modal-section {
+      margin-bottom: 2rem;
+    }
+
+    .modal-section-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .modal-section p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.8;
+      margin-bottom: 0.75rem;
+    }
+
+    .modal-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .modal-section ul li {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      padding: 0.3rem 0 0.3rem 1.5rem;
+      position: relative;
+    }
+
+    .modal-section ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.8rem;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--pink);
+    }
+
+    /* Solution cards */
+    .sol-grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .sol-grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .sol-grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sol-card {
+      background: #FFF9F0;
+      border: 1px solid rgba(45, 38, 64, 0.08);
+      border-radius: 16px;
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .sol-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #FFF0D4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .sol-card h4 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+
+    .sol-card p {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    .modal-img {
+      width: 100%;
+      border-radius: 12px;
+      margin: 1rem 0;
+    }
+
+    .modal-impact {
+      background: #FFF9F0;
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+
+    .modal-impact p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      line-height: 1.8;
+      margin-bottom: 0.5rem;
+    }
+
+    .btn-case-study {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-decoration: none;
+      background: var(--pink-deep);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      margin-top: 1rem;
+    }
+
+    .btn-case-study:hover {
+      background: #C05F87;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(212, 114, 156, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .modal-container {
+        width: 96vw;
+        max-height: 92vh;
+      }
+
+      .modal-scroll {
+        padding: 1.5rem;
+        max-height: 92vh;
+      }
+
+      .modal-title {
+        font-size: 1.4rem;
+      }
+
+      .sol-grid-3,
+      .sol-grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-meta {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      #hero,
+      #about,
+      #experience,
+      #skills,
+      #contact {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .hero-desc {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-ctas {
+        justify-content: center;
+      }
+
+      .hero-img-wrapper {
+        width: 250px;
+        height: 250px;
+      }
+
+      .hero-float-card {
+        display: none;
+      }
+
+      .about-split {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .project-inner {
+        grid-template-columns: 1fr !important;
+        gap: 2rem;
+      }
+
+      .project-section:nth-child(even) .project-inner {
+        direction: ltr;
+      }
+
+      .project-section {
+        padding: 3rem 1.5rem;
+      }
+
+      .acc-left {
+        gap: 0.75rem;
+      }
+
+      .acc-company {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Blob -->
+  <div class="blob" id="blob"></div>
+
+  <!-- Navigation -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo">N<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="menu-btn" id="menu-btn" aria-label="Toggle menu">
+      <svg width="24" height="24" fill="none" stroke="var(--text)" stroke-width="2">
+        <path d="M4 7h16M4 12h16M4 17h16" />
+      </svg>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- ==================== HERO (kept) ==================== -->
+  <section id="hero">
+    <div class="hero-grid">
+      <div>
+        <h1 class="hero-title" data-anim>
+          Crafting intuitive<br>experiences with<br><span class="accent">clarity</span> & <span
+            class="lavender">intention</span>
+        </h1>
+        <h2
+          style="font-family:'DM Sans',sans-serif;font-size:1.1rem;font-weight:600;color:var(--pink-deep);margin-bottom:1rem"
+          data-anim data-anim-delay="1">Hi, I'm Nadia Lee</h2>
+        <p class="hero-desc" data-anim data-anim-delay="2">A UI/UX designer passionate about creating meaningful,
+          user-centered experiences. I bring clarity to complex problems through research-driven design, creating
+          solutions that serve both users and business goals. Every detail is crafted to make interactions intuitive and
+          effortless.</p>
+        <div class="hero-ctas" data-anim data-anim-delay="3">
+          <a href="#work" class="btn btn-pink">View Projects</a>
+          <a href="assets/Resume.pdf" download class="btn btn-ghost">
+            Resume
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12h8M7 2v7M4 6l3 3 3-3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual" data-anim data-anim-delay="2">
+        <div class="hero-img-wrapper">
+          <img src="assets/profile.png" alt="Nadia Lee">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PROJECTS — IMMERSIVE ALTERNATING ==================== -->
+  <section id="work">
+    <div class="work-header">
+      <p class="section-label" data-anim>Selected Works</p>
+      <h2 class="section-heading" data-anim data-anim-delay="1">Recent project <em>highlights</em></h2>
+    </div>
+
+    <!-- Project 1: Design System -->
+    <div class="project-section">
+      <div class="project-inner" data-anim>
+        <div class="project-visual" style="background:linear-gradient(135deg, var(--lilac), var(--blush))">
+          <div class="project-num">01</div>
+          <img src="assets/thumbnails/design-system.png" alt="Design System component library" loading="lazy">
+          <div class="project-visual-overlay"></div>
+        </div>
+        <div class="project-content">
+          <span class="project-tag ptag-lilac">Design System</span>
+          <h3 class="project-title">Leading a Cross-Channel Design System from Scratch</h3>
+          <p class="project-desc">Built and governed a scalable design system from scratch — foundations, components,
+            and templates — establishing a single source of truth across 4 product channels.</p>
+          <div class="detail-tags">
+            <span class="dtag">Atomic Design</span>
+            <span class="dtag">Component Library</span>
+            <span class="dtag">Multi-channel</span>
+            <span class="dtag">Design Workflows</span>
+            <span class="dtag">Governance</span>
+          </div>
+          <div class="project-metrics">
+            <div class="pm-item">
+              <div class="pm-label">Role</div>
+              <div class="pm-value">UI/UX Designer</div>
+            </div>
+            <div class="pm-item">
+              <div class="pm-label">Platforms</div>
+              <div class="pm-value">4</div>
+            </div>
+          </div>
+          <div class="project-expand-label">Highlights</div>
+          <div class="project-detail-panel open">
+            <ul class="detail-bullets">
+              <li>Led the creation of a design system from scratch, scaling it across four product channels to establish
+                a unified foundation for all product design</li>
+              <li>Defined governance frameworks, contribution models and maintenance processes to ensure consistency and
+                scalability</li>
+              <li>Streamlined design workflows with reusable components, reducing duplication and improving visual and
+                interaction consistency across products</li>
+              <li>Accelerated feature delivery and team collaboration by aligning design and engineering around a shared
+                system, supporting scalable, efficient product development</li>
+            </ul>
+          </div>
+          <button class="btn-case-study" onclick="openModal('modal-1')">View Case Study <svg width="14" height="14"
+              fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 3l5 5-5 5" />
+            </svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2: Feedback -->
+    <div class="project-section">
+      <div class="project-inner" data-anim>
+        <div class="project-visual" style="background:linear-gradient(135deg, #FFF5F0, var(--blush))">
+          <div class="project-num">02</div>
+          <img src="assets/thumbnails/nps-survey.png" alt="In-app NPS survey screens" loading="lazy">
+          <div class="project-visual-overlay"></div>
+        </div>
+        <div class="project-content">
+          <span class="project-tag ptag-pink">UX Strategy</span>
+          <h3 class="project-title">Redesigning In-App Feedback to Improve Net Promoter Score</h3>
+          <p class="project-desc">Transformed fragmented, out-of-context feedback into actionable in-app insights —
+            enabling better product prioritisation and significantly improving NPS.</p>
+          <div class="detail-tags">
+            <span class="dtag">Journey Mapping</span>
+            <span class="dtag">Contextual UA</span>
+            <span class="dtag">Data-driven Design</span>
+            <span class="dtag">UX Strategy</span>
+          </div>
+          <div class="project-metrics">
+            <div class="pm-item">
+              <div class="pm-label">Role</div>
+              <div class="pm-value">UI/UX Designer</div>
+            </div>
+            <div class="pm-item">
+              <div class="pm-label">NPS Before</div>
+              <div class="pm-value"><span class="down">-38.5</span></div>
+            </div>
+            <div class="pm-item">
+              <div class="pm-label">NPS After</div>
+              <div class="pm-value"><span class="up">+32.1</span></div>
+            </div>
+          </div>
+          <div class="project-expand-label">Highlights</div>
+          <div class="project-detail-panel open">
+            <ul class="detail-bullets">
+              <li>Introduced contextual triggers across five key user actions, delivering journey-based insights that
+                helped teams pinpoint friction points faster</li>
+              <li>Drove a meaningful uplift in user satisfaction, with the app's Net Promoter Score (NPS) rising from
+                -38.5 to 32.1 within a year, reflecting improvements in clarity, context, and actionable insights</li>
+              <li>Enabled data-informed prioritisation, empowering teams to act with confidence on areas that truly
+                mattered to users</li>
+              <li>Strengthened user trust, ensuring users felt heard at critical moments, improving overall engagement
+                and loyalty</li>
+            </ul>
+          </div>
+          <button class="btn-case-study" onclick="openModal('modal-2')">View Case Study <svg width="14" height="14"
+              fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 3l5 5-5 5" />
+            </svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3: Roaming -->
+    <div class="project-section">
+      <div class="project-inner" data-anim>
+        <div class="project-visual" style="background:linear-gradient(135deg, #FFF0E5, var(--cream))">
+          <div class="project-num">03</div>
+          <img src="assets/thumbnails/payg-roaming.png" alt="Roaming UX revamp screens" loading="lazy">
+          <div class="project-visual-overlay"></div>
+        </div>
+        <div class="project-content">
+          <span class="project-tag ptag-peach">UX Revamp</span>
+          <h3 class="project-title">Pay-as-you-go (PAYG) Roaming UX Revamp</h3>
+          <p class="project-desc">Redesigned the pay-as-you-go roaming experience to improve clarity, align with user
+            mental models, and reduce unintended usage of higher-cost services.</p>
+          <div class="detail-tags">
+            <span class="dtag">Information Architecture</span>
+            <span class="dtag">UX Design</span>
+            <span class="dtag">User Flow</span>
+            <span class="dtag">Mental Model Alignment</span>
+          </div>
+          <div class="project-metrics">
+            <div class="pm-item">
+              <div class="pm-label">Role</div>
+              <div class="pm-value">UI/UX Designer</div>
+            </div>
+          </div>
+          <div class="project-expand-label">Highlights</div>
+          <div class="project-detail-panel open">
+            <ul class="detail-bullets">
+              <li>Redesigned the information architecture and interface to improve clarity, hierarchy, and overall
+                usability of the PAYG roaming experience</li>
+              <li>Repositioned PAYG under add-ons, aligning the flow with user expectations and mental models, reducing
+                confusion and making the experience more intuitive</li>
+              <li>Enhanced discoverability and task efficiency, enabling users to find and activate roaming options
+                faster and with greater confidence</li>
+            </ul>
+          </div>
+          <button class="btn-case-study" onclick="openModal('modal-3')">View Case Study <svg width="14" height="14"
+              fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 3l5 5-5 5" />
+            </svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 4: Voucher Wallet -->
+    <div class="project-section">
+      <div class="project-inner" data-anim>
+        <div class="project-visual" style="background:linear-gradient(135deg, var(--blush), var(--lilac))">
+          <div class="project-num">04</div>
+          <img src="assets/thumbnails/voucher-wallet.png" alt="Voucher Wallet design screens" loading="lazy">
+          <div class="project-visual-overlay"></div>
+        </div>
+        <div class="project-content">
+          <span class="project-tag ptag-mint">Feature Design</span>
+          <h3 class="project-title">App Voucher Wallet</h3>
+          <p class="project-desc">Designed a centralised Voucher Wallet to improve discoverability, increase redemption,
+            and strengthen the app as a key promotional and engagement channel.</p>
+          <div class="detail-tags">
+            <span class="dtag">Feature Design</span>
+            <span class="dtag">User Engagement</span>
+            <span class="dtag">User Flow</span>
+            <span class="dtag">Information Architecture</span>
+          </div>
+          <div class="project-metrics">
+            <div class="pm-item">
+              <div class="pm-label">Role</div>
+              <div class="pm-value">UI/UX Designer</div>
+            </div>
+          </div>
+          <div class="project-expand-label">Highlights</div>
+          <div class="project-detail-panel open">
+            <ul class="detail-bullets">
+              <li>Created a dedicated Voucher Wallet section within the app for easy access and discovery</li>
+              <li>Enabled account holders to view and manage vouchers across multiple services and lines, improving
+                visibility and control</li>
+              <li>Designed informative voucher cards with key details, enabling users to act efficiently and confidently
+              </li>
+              <li>Provided a seamless transition to the website for voucher application and purchase completion,
+                ensuring a smooth end-to-end experience</li>
+            </ul>
+          </div>
+          <button class="btn-case-study" onclick="openModal('modal-4')">View Case Study <svg width="14" height="14"
+              fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 3l5 5-5 5" />
+            </svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ABOUT — SPLIT SCREEN ==================== -->
+  <section id="about">
+    <div class="about-container">
+      <div class="about-split">
+        <div class="about-left">
+          <p class="section-label" data-anim>My Design Beliefs</p>
+          <h2 class="section-heading" data-anim data-anim-delay="1">Designing with<br><em>empathy</em> & purpose</h2>
+          <p data-anim data-anim-delay="2">UX acts as the bridge between users and the business, bringing both needs
+            together through thoughtful design. The small details in a journey&mdash;moments of confusion or
+            ease&mdash;are where design makes the biggest impact.</p>
+          <p data-anim data-anim-delay="3">Clarity is at the core of how I design. The words we choose, the way
+            information is structured, and the subtle cues we design all shape how a product is experienced.</p>
+          <p data-anim data-anim-delay="4">The best experiences feel almost invisible&mdash;where everything simply
+            works, and users can move forward without thinking twice.</p>
+        </div>
+        <div class="counter-grid">
+          <div class="counter-card" data-anim data-anim-delay="1">
+            <div class="counter-num" data-count="3">0</div>
+            <div class="counter-label">Years of Experience</div>
+          </div>
+          <div class="counter-card" data-anim data-anim-delay="2">
+            <div class="counter-num" data-count="4">0</div>
+            <div class="counter-label">Product Platforms</div>
+          </div>
+          <div class="counter-card" data-anim data-anim-delay="3">
+            <div class="counter-num" data-count="5">0</div>
+            <div class="counter-label">Company Awards</div>
+          </div>
+          <div class="counter-card" data-anim data-anim-delay="4">
+            <div class="counter-num" data-count="70.6" data-decimal="true">0</div>
+            <div class="counter-label">NPS Points Gained</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== EXPERIENCE — ACCORDION ==================== -->
+  <section id="experience">
+    <div class="exp-container">
+      <div class="exp-header">
+        <p class="section-label" data-anim>Journey</p>
+        <h2 class="section-heading" data-anim data-anim-delay="1">Where I've <em>grown</em></h2>
+      </div>
+
+      <div class="accordion-item open" data-anim>
+        <div class="accordion-trigger">
+          <div class="acc-left">
+            <div>
+              <div class="acc-company">M1 Limited</div>
+              <div class="acc-role">UI/UX Designer</div>
+            </div>
+            <div class="acc-date">Oct 2022 — Present</div>
+          </div>
+        </div>
+        <div class="accordion-body">
+          <ul class="acc-bullets">
+            <li>Led end-to-end development of a scalable design system across 4 product platforms</li>
+            <li>Led UX strategy and design execution for the My M1+ app</li>
+            <li>Optimised payment flows for a more intuitive, frictionless experience</li>
+            <li>Redesigned in-app feedback survey — NPS improved from <span class="nps-pill nps-neg">-38.5</span> to
+              <span class="nps-pill nps-pos">+32.1</span>
+            </li>
+            <li>Championed UX writing as a critical pillar of product quality</li>
+            <li>Optimised UX flows and scripts for 4 hotline voice bots</li>
+            <li>Recognised with 5 organisation-wide awards over 2.5 years</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion-item open" data-anim data-anim-delay="1">
+        <div class="accordion-trigger">
+          <div class="acc-left">
+            <div>
+              <div class="acc-company">SIA-NUS Workshop</div>
+              <div class="acc-role">Facilitator</div>
+            </div>
+            <div class="acc-date">Jul 2021</div>
+          </div>
+        </div>
+        <div class="accordion-body">
+          <ul class="acc-bullets">
+            <li>Guided cabin crews to redefine in-flight pain points using the design thinking framework</li>
+            <li>Facilitated brainstorming sessions to develop creative solutions for improved customer experience</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="accordion-item open" data-anim data-anim-delay="2">
+        <div class="accordion-trigger">
+          <div class="acc-left">
+            <div>
+              <div class="acc-company">Trinax Pte Ltd</div>
+              <div class="acc-role">UI/UX Design Intern</div>
+            </div>
+            <div class="acc-date">Jan — Jun 2021</div>
+          </div>
+        </div>
+        <div class="accordion-body">
+          <ul class="acc-bullets">
+            <li>Led end-to-end UX design for new digital projects, defining information architecture, creating
+              wireframes, and shaping intuitive user experiences</li>
+            <li>Served as UX Lead for a large-scale virtual fundraising event, producing 100+ wireframes and
+              collaborating with cross-functional teams to deliver a cohesive and user-centered experience</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SKILLS (kept) ==================== -->
+  <section id="skills">
+    <div class="skills-container">
+      <div class="skills-header">
+        <p class="section-label" data-anim>Toolkit</p>
+        <h2 class="section-heading" data-anim data-anim-delay="1">Skills & <em>Tools</em></h2>
+      </div>
+      <div class="skill-group" data-anim>
+        <h3>Design Tools</h3>
+        <div class="skill-list">
+          <span class="skill-chip chip-pink">Figma</span>
+          <span class="skill-chip chip-pink">InDesign</span>
+          <span class="skill-chip chip-pink">Illustrator</span>
+          <span class="skill-chip chip-pink">Photoshop</span>
+          <span class="skill-chip chip-pink">Lightroom</span>
+          <span class="skill-chip chip-pink">After Effects</span>
+          <span class="skill-chip chip-pink">Premiere Pro</span>
+        </div>
+      </div>
+      <div class="skill-group" data-anim>
+        <h3>Collaboration Platforms</h3>
+        <div class="skill-list">
+          <span class="skill-chip chip-lilac">Miro</span>
+          <span class="skill-chip chip-lilac">MURAL</span>
+          <span class="skill-chip chip-lilac">Lucidchart</span>
+          <span class="skill-chip chip-lilac">JIRA</span>
+          <span class="skill-chip chip-lilac">Confluence</span>
+          <span class="skill-chip chip-lilac">MS Office</span>
+        </div>
+      </div>
+      <div class="skill-group" data-anim>
+        <h3>Strengths</h3>
+        <div class="skill-list">
+          <span class="skill-chip chip-neutral">Leadership</span>
+          <span class="skill-chip chip-neutral">Team Player</span>
+          <span class="skill-chip chip-neutral">Organization</span>
+          <span class="skill-chip chip-neutral">Detail-oriented</span>
+          <span class="skill-chip chip-neutral">Communication</span>
+          <span class="skill-chip chip-neutral">Problem-solving</span>
+          <span class="skill-chip chip-neutral">UX Writing</span>
+          <span class="skill-chip chip-neutral">Design Thinking</span>
+          <span class="skill-chip chip-neutral">User Research</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT (kept) ==================== -->
+  <section id="contact">
+    <div class="contact-container">
+      <p class="section-label" data-anim>Say Hello</p>
+      <h2 class="section-heading" data-anim data-anim-delay="1">Let's create<br>something <em>beautiful</em></h2>
+      <p style="color:var(--text-light);line-height:1.7;margin-bottom:2.5rem;max-width:420px;margin-left:auto;margin-right:auto"
+        data-anim data-anim-delay="2">I'm always open to discussing new projects, creative ideas, or opportunities to be
+        part of your vision.</p>
+      <div class="contact-links" data-anim data-anim-delay="3">
+        <a href="mailto:leezhiying.0101@gmail.com" class="btn btn-pink">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 7l7 5 7-5M4 16h12a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1z" />
+          </svg>
+          Email Me
+        </a>
+        <a href="https://www.linkedin.com/in/nadia-lee-zhiying/" target="_blank" rel="noopener noreferrer"
+          class="btn btn-ghost" style="border-color:rgba(139,124,184,0.3);color:var(--lavender-deep)">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+          </svg>
+          LinkedIn
+        </a>
+        <a href="assets/Resume.pdf" download class="btn btn-ghost">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 14h12M9 3v8M6 8l3 3 3-3" />
+          </svg>
+          Resume
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Nadia Lee</p>
+  </footer>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- Modal 1: Design System -->
+  <div class="modal-overlay" id="modal-1" onclick="closeModalOutside(event)">
+    <div class="modal-container">
+      <div class="modal-scroll">
+        <button class="modal-close" onclick="closeModal('modal-1')" aria-label="Close">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4l10 10M14 4L4 14" />
+          </svg>
+        </button>
+        <img class="modal-hero-img" src="assets/projects/design-system/hero.png" alt="Design System">
+        <h2 class="modal-title">Leading a Cross-Channel Design System from Scratch</h2>
+        <p class="modal-subtitle">Built and led the development of a scalable multi-channel design system from scratch,
+          establishing a single source of truth that improved visual consistency, accelerated delivery, and enabled
+          long-term product growth.</p>
+        <div class="modal-meta">
+          <div>
+            <div class="modal-meta-label">Role</div>
+            <div class="modal-meta-value">Lead Designer</div>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Background</h3>
+          <p>As the team transitioned from fully outsourced design to a fully in-house model, we inherited products
+            without a structured design system. Design assets were previously managed across vendor files with no
+            centralised system for internal teams to reference or maintain.</p>
+          <p>As ownership shifted internally, it became essential to establish a scalable and maintainable foundation to
+            support ongoing product development across multiple channels.</p>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Problem</h3>
+          <p>There was no single source of truth for design assets, components, or usage guidelines. Designers had to
+            manually trace previous files to locate references or recreate components from scratch, often resulting in
+            inconsistencies across products.</p>
+          <p>This lack of standardisation led to slower design turnaround times, duplicated effort, and fragmented user
+            experiences across different product channels.</p>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Challenge</h3>
+          <p>I led the initiative to build the design system from the ground up while continuing to support active
+            product development. This required defining the system's structure, establishing governance, and acting as
+            the primary reviewer for new components and assets.</p>
+          <p>The challenge was not only to create the system itself, but also to drive alignment across designers and
+            ensure adoption — balancing scalability, usability, and long-term maintainability across multiple product
+            channels.</p>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Opportunity</h3>
+          <p>There was opportunity to establish a unified design system to serve as a single source of truth, improving
+            consistency, scalability, and efficiency across products. A well-structured system would enable faster
+            delivery, reduce duplicated work, and create a cohesive user experience across products.</p>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Solution</h3>
+          <p>I led the design and implementation of a scalable, multi-channel design system structured across
+            foundational elements, reusable components, and channel-specific assets.</p>
+          <div class="sol-grid sol-grid-3">
+            <div class="sol-card">
+              <div class="sol-num">1</div>
+              <h4>Established shared foundations</h4>
+              <p>Core elements such as typography, colour, spacing, and iconography were centralised in a shared
+                library, providing a consistent visual language across all products.</p>
+            </div>
+            <div class="sol-card">
+              <div class="sol-num">2</div>
+              <h4>Structured channel-specific component libraries</h4>
+              <p>Dedicated design system files were created for each product channel to house components, templates, and
+                flows relevant to their needs, while still aligning with the shared foundation.</p>
+            </div>
+            <div class="sol-card">
+              <div class="sol-num">3</div>
+              <h4>Defined system architecture and governance</h4>
+              <p>Established naming conventions, categorisation structures, and contribution guidelines to ensure
+                consistency and scalability, including clear criteria for introducing and reviewing new components to
+                maintain system integrity.</p>
+            </div>
+          </div>
+          <div class="sol-grid sol-grid-2" style="margin-top:1rem">
+            <div class="sol-card">
+              <div class="sol-num">4</div>
+              <h4>Created documentation and usage guidelines</h4>
+              <p>Guidelines were established for component usage, asset creation, and icon design, ensuring both
+                existing and new designers could contribute consistently and confidently.</p>
+            </div>
+            <div class="sol-card">
+              <div class="sol-num">5</div>
+              <h4>Led adoption and cross-team alignment</h4>
+              <p>Facilitated discussions, reviews, and approvals to ensure alignment across teams and establish the
+                design system as the trusted source of truth.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">How a Design System Works</h3>
+          <img class="modal-img" src="assets/projects/design-system/how-it-works.png" alt="How a design system works">
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Foundation Examples</h3>
+          <img class="modal-img" src="assets/projects/design-system/colour.png" alt="Colour system"
+            style="margin-bottom:0.5rem">
+          <img class="modal-img" src="assets/projects/design-system/typography.png" alt="Typography"
+            style="margin-bottom:0.5rem">
+          <img class="modal-img" src="assets/projects/design-system/layout-grid.png" alt="Layout grid"
+            style="margin-bottom:0.5rem">
+          <img class="modal-img" src="assets/projects/design-system/icon-guidelines.png" alt="Icon guidelines">
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Component Examples</h3>
+          <img class="modal-img" src="assets/projects/design-system/button-component.png" alt="Button component"
+            style="margin-bottom:0.5rem">
+          <img class="modal-img" src="assets/projects/design-system/navigation-component.png" alt="Navigation component"
+            style="margin-bottom:0.5rem">
+          <img class="modal-img" src="assets/projects/design-system/form-field-component.png"
+            alt="Form field component">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: NPS Feedback -->
+  <div class="modal-overlay" id="modal-2" onclick="closeModalOutside(event)">
+    <div class="modal-container">
+      <div class="modal-scroll">
+        <button class="modal-close" onclick="closeModal('modal-2')" aria-label="Close">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4l10 10M14 4L4 14" />
+          </svg>
+        </button>
+        <img class="modal-hero-img" src="assets/projects/nps-feedback/screens.png" alt="NPS Feedback screens">
+        <h2 class="modal-title">Redesigning In-App Feedback to Improve Net Promoter Score</h2>
+        <p class="modal-subtitle">Transformed fragmented, out-of-context feedback into actionable in-app insights —
+          enabling better product prioritisation, strengthening user trust, and significantly increasing Net Promoter
+          Score (NPS).</p>
+        <div class="modal-meta">
+          <div>
+            <div class="modal-meta-label">Role</div>
+            <div class="modal-meta-value">UI/UX Designer</div>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Background</h3>
+          <p>Previously, users received an SMS with a link to a feedback form after completing certain actions in the
+            app. While this approach generated responses, the feedback was often disconnected from the user's immediate
+            experience, resulting in broad and low-quality insights that were difficult for teams to interpret and act
+            on.</p>
+          <p>This project focused on redesigning the feedback experience to make it contextual, timely, and actionable.
+          </p>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Problem</h3>
+          <p>The existing feedback system lacked contextual relevance, making it difficult to derive meaningful
+            insights.</p>
+          <p>Surveys were not triggered in direct relation to specific user interactions, causing feedback to be
+            untimely and overly general. As a result, teams struggled to identify friction points or link feedback to
+            specific journeys.</p>
+          <p>This diluted the value of the data and limited the team's ability to confidently prioritise and improve key
+            user flows.</p>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Opportunity</h3>
+          <p>Introduce contextual, in-app feedback at key interaction points to capture timely, relevant insights
+            through guided inputs. This enables users to reflect accurately on their recent experience while generating
+            both measurable and actionable feedback.</p>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Solution</h3>
+          <p>We redesigned the feedback system into a fully integrated, contextual in-app survey framework to capture
+            more relevant and actionable insights.</p>
+          <div class="sol-grid sol-grid-3">
+            <div class="sol-card">
+              <div class="sol-num">1</div>
+              <h4>In-app contextual surveys</h4>
+              <p>Replaced generic SMS links with surveys embedded directly within the app, triggered immediately after
+                five high-impact user actions to capture feedback at the most relevant moment.</p>
+            </div>
+            <div class="sol-card">
+              <div class="sol-num">2</div>
+              <h4>Journey-based feedback triggers</h4>
+              <p>Mapped each survey trigger to specific user journeys, allowing teams to clearly associate feedback with
+                real user interactions and identify friction points more accurately.</p>
+            </div>
+            <div class="sol-card">
+              <div class="sol-num">3</div>
+              <h4>Guided and actionable responses</h4>
+              <p>Introduced quick-select scenario options tailored to each trigger, helping users clearly express their
+                experience while retaining open-text fields for deeper qualitative insights.</p>
+            </div>
+          </div>
+          <p style="margin-top:1rem">This approach significantly improved feedback quality, clarity, and usability —
+            making insights more actionable and easier for teams to analyse and prioritise.</p>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Impact</h3>
+          <div class="modal-impact">
+            <p>The redesigned in-app feedback system significantly improved feedback quality and strengthened customer
+              sentiment, turning feedback into a reliable driver of product improvements.</p>
+            <p>Most notably, the app's NPS increased from -38.5 to 32.1 within a year, reflecting meaningful experience
+              improvements enabled by clearer, contextual insights.</p>
+            <p>By capturing feedback at critical interaction points, teams were able to identify friction faster and
+              prioritise improvements with greater confidence. This strengthened cross-functional alignment and
+              reinforced user trust by ensuring users felt heard at the moments that mattered most.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Roaming UX -->
+  <div class="modal-overlay" id="modal-3" onclick="closeModalOutside(event)">
+    <div class="modal-container">
+      <div class="modal-scroll">
+        <button class="modal-close" onclick="closeModal('modal-3')" aria-label="Close">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4l10 10M14 4L4 14" />
+          </svg>
+        </button>
+        <img class="modal-hero-img" src="assets/projects/roaming/hero.png" alt="PAYG Roaming screens">
+        <h2 class="modal-title">Pay-as-you-go (PAYG) Roaming UX Revamp</h2>
+        <p class="modal-subtitle">Redesigned the Pay-as-you-go roaming experience to improve clarity, align with user
+          mental models, and reduce unintended usage of higher-cost roaming services.</p>
+        <div class="modal-meta">
+          <div>
+            <div class="modal-meta-label">Role</div>
+            <div class="modal-meta-value">UI/UX Designer</div>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Background</h3>
+          <p>Pay-as-you-go (PAYG) roaming allows users to stay connected overseas without subscribing to a roaming plan,
+            charging them only based on actual usage. This service is designed to provide flexibility for users who
+            prefer not to commit to fixed roaming plans.</p>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Problem</h3>
+          <p>The existing PAYG roaming experience is confusing and misleading due to unclear hierarchy and interaction
+            design.</p>
+          <p>Voice & SMS roaming is enabled by default, but the interface presents it as a subscription option. As a
+            result, when users unsubscribe from PAYG Data roaming, they may mistakenly believe they have also
+            unsubscribed from Voice & SMS roaming, prompting unnecessary actions to re-enable a service that was already
+            active.</p>
+          <p>Additionally, PAYG roaming is given equal or higher visual hierarchy compared to roaming plans, despite
+            being relevant to a smaller group of users. This creates confusion and leads some users to unintentionally
+            rely on PAYG data roaming, which incurs higher usage-based charges compared to purchasing roaming plans.</p>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Before</h3>
+          <img class="modal-img" src="assets/projects/roaming/before.png" alt="Before redesign">
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Opportunity</h3>
+          <p>The PAYG roaming service can be repositioned to better align with users' mental models and product
+            hierarchy.</p>
+          <p>Instead of presenting PAYG as a standalone primary section, it can be integrated within the add-ons or
+            value-added services section, where users naturally expect optional services to appear. Clarifying the
+            default status of Voice & SMS roaming, while presenting PAYG Data as an optional add-on, can reduce
+            confusion and improve decision-making.</p>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Solution</h3>
+          <p>I redesigned the information architecture and interface to improve clarity, hierarchy, and usability of the
+            PAYG roaming experience.</p>
+          <div class="sol-grid sol-grid-2">
+            <div class="sol-card">
+              <div class="sol-num">1</div>
+              <h4>Repositioned PAYG to align with user expectations</h4>
+              <p>Moved PAYG roaming under Active add-ons and reduced its visual prominence, aligning it with users'
+                mental model of optional services while prioritising roaming plans as the primary option.</p>
+            </div>
+            <div class="sol-card">
+              <div class="sol-num">2</div>
+              <h4>Clarified default Voice & SMS roaming</h4>
+              <p>Presented Voice & SMS roaming as an active default service, removing the impression that users needed
+                to subscribe to enable it.</p>
+            </div>
+            <div class="sol-card">
+              <div class="sol-num">3</div>
+              <h4>Made PAYG Data roaming a clear optional add-on</h4>
+              <p>Separated PAYG Data roaming from the default service, helping users better understand its purpose and
+                avoid accidental activation.</p>
+            </div>
+            <div class="sol-card">
+              <div class="sol-num">4</div>
+              <h4>Improved content structure and usability</h4>
+              <p>Refined grouping, labels, and layout to reduce cognitive load and make roaming options easier to
+                understand and navigate.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Impact</h3>
+          <div class="modal-impact">
+            <p>The redesign improved clarity among users around PAYG roaming.</p>
+            <p>Users can now clearly distinguish between default Voice & SMS roaming and the optional PAYG Data roaming
+              add-on. Repositioning PAYG under add-ons also aligned the experience with user expectations, making the
+              roaming section easier to understand and navigate.</p>
+            <p>This reduced the number of users mistakenly subscribing to PAYG Data roaming and helped guide users
+              toward more suitable roaming plans, resulting in a clearer experience and more effective service adoption.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Voucher Wallet -->
+  <div class="modal-overlay" id="modal-4" onclick="closeModalOutside(event)">
+    <div class="modal-container">
+      <div class="modal-scroll">
+        <button class="modal-close" onclick="closeModal('modal-4')" aria-label="Close">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4l10 10M14 4L4 14" />
+          </svg>
+        </button>
+        <img class="modal-hero-img" src="assets/projects/voucher-wallet/hero.png" alt="Voucher Wallet screens">
+        <h2 class="modal-title">App Voucher Wallet</h2>
+        <p class="modal-subtitle">Designed a centralised Voucher Wallet to improve voucher discoverability, increase
+          redemption, and strengthen the app as a key promotional and engagement channel.</p>
+        <div class="modal-meta">
+          <div>
+            <div class="modal-meta-label">Role</div>
+            <div class="modal-meta-value">UI/UX Designer</div>
+          </div>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Background</h3>
+          <p>Vouchers were previously only accessible through the website, while the app primarily focused on account
+            management features such as viewing plans, usage, and billing. This limited the app's role as a channel for
+            promotional engagement and reward discovery.</p>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Problem</h3>
+          <p>The lack of voucher visibility within the app resulted in low voucher redemption rates and missed
+            opportunities to engage users.</p>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Challenge</h3>
+          <p>Although vouchers could be introduced and managed within the app, they could only be applied on the
+            website. The solution needed to create a seamless experience that allows users to discover and redeem
+            vouchers in the app, while smoothly transitioning them to the website to complete usage.</p>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Opportunity</h3>
+          <p>Introducing a centralised Voucher Wallet within the app would provide a single, dedicated space for users
+            to view, manage, and redeem vouchers across all their services. This would improve reward visibility, align
+            with users' expectations of managing their account in one place, and strengthen the app's role as a key
+            engagement channel.</p>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Solution</h3>
+          <p>I designed a centralised Voucher Wallet to improve voucher discoverability, clarity, and usability:</p>
+          <ul>
+            <li>Created a dedicated Voucher Wallet section within the app for easy access</li>
+            <li>Enabled account holders to view and manage vouchers across all their services and lines</li>
+            <li>Designed clear voucher cards with key information, including value, expiry, and eligibility</li>
+            <li>Introduced sorting options, such as recently added and earliest expiry, to help users prioritise usage
+            </li>
+            <li>Provided a seamless transition to the website for voucher application and completion</li>
+            <li>Designed empty states and filtering to improve clarity and usability</li>
+          </ul>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Impact</h3>
+          <div class="modal-impact">
+            <p>The Voucher Wallet made vouchers more visible, accessible, and easier to manage within the app. Users can
+              now easily discover, track, and redeem vouchers in one place, improving convenience and overall
+              satisfaction.</p>
+            <p>For the business, this increased voucher redemption, boosted app engagement, and enabled more effective
+              promotional campaigns by surfacing relevant rewards directly within the app.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    // --- Mobile Nav ---
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+    // --- Navbar scroll ---
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // --- Scroll reveal ---
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('[data-anim]').forEach(el => obs.observe(el));
+
+    // --- Animated counters ---
+    const counterObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseFloat(el.dataset.count);
+          const isDecimal = el.dataset.decimal === 'true';
+          const duration = 1500;
+          const start = performance.now();
+          function tick(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+            const current = eased * target;
+            el.textContent = isDecimal ? current.toFixed(1) : Math.round(current) + '+';
+            if (progress < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+          counterObs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.counter-num').forEach(el => counterObs.observe(el));
+
+    // --- Modals ---
+    function openModal(id) {
+      document.getElementById(id).classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function closeModalOutside(e) {
+      if (e.target.classList.contains('modal-overlay')) {
+        e.target.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.open').forEach(m => {
+          m.classList.remove('open');
+        });
+        document.body.style.overflow = '';
+      }
+    });
+
+  </script>
+</body>
+
+</html>
