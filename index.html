@@ -1370,6 +1370,89 @@
       }
     }
 
+    /* ==================== PAST PROJECTS GALLERY ==================== */
+    .past-projects {
+      max-width: 1200px;
+      margin: 80px auto 40px;
+      padding: 0 3rem;
+    }
+    .past-projects-header { margin-bottom: 32px; }
+    .past-projects-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 500;
+      color: var(--text);
+      margin-top: 8px;
+    }
+    .past-projects-heading em { font-style: italic; color: var(--text); }
+
+    .past-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .past-card {
+      background: none;
+      border: 0;
+      padding: 0;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: transform .3s ease;
+      font: inherit;
+      color: inherit;
+    }
+    .past-card:hover { transform: translateY(-4px); }
+    .past-card:focus-visible {
+      outline: 2px solid var(--mauve);
+      outline-offset: 4px;
+      border-radius: 12px;
+    }
+
+    .past-thumb {
+      aspect-ratio: 4 / 3;
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--blush), var(--lilac));
+    }
+    .past-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s ease;
+    }
+    .past-card:hover .past-thumb img { transform: scale(1.04); }
+
+    .past-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: .01em;
+      margin-top: 8px;
+    }
+    .past-sublabel {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      color: var(--text-light);
+    }
+
+    .modal-credit {
+      margin-top: 24px;
+      font-size: .85rem;
+      color: #6b6470;
+      font-style: italic;
+    }
+
+    #modal-past-1 .modal-container,
+    #modal-past-3 .modal-container { background: var(--lilac); }
+    #modal-past-2 .modal-container { background: #FFF8E1; }
+
     /* ==================== RESPONSIVE ==================== */
     @media (max-width: 768px) {
       .nav-links {
@@ -1444,6 +1527,25 @@
 
       .acc-company {
         font-size: 1.1rem;
+      }
+
+      .past-projects {
+        padding: 0 20px;
+        margin-top: 56px;
+      }
+      .past-gallery {
+        grid-template-columns: none;
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 16px;
+        margin: 0 -20px;
+        padding: 4px 20px 12px;
+        -webkit-overflow-scrolling: touch;
+      }
+      .past-card {
+        flex: 0 0 75%;
+        scroll-snap-align: start;
       }
     }
   </style>
@@ -1704,6 +1806,39 @@
               <path d="M5 3l5 5-5 5" />
             </svg></button>
         </div>
+      </div>
+    </div>
+
+    <!-- Past Projects Gallery -->
+    <div class="past-projects">
+      <div class="past-projects-header" data-anim>
+        <h3 class="past-projects-heading">Past <em>Projects</em></h3>
+      </div>
+
+      <div class="past-gallery" data-anim>
+        <button class="past-card" onclick="openModal('modal-past-1')" aria-label="Open Rentground Branding case study">
+          <div class="past-thumb">
+            <img src="assets/thumbnails/rentground.png" alt="Rentground branding" loading="lazy">
+          </div>
+          <div class="past-label">Rentground</div>
+          <div class="past-sublabel">Rental marketplace branding</div>
+        </button>
+
+        <button class="past-card" onclick="openModal('modal-past-2')" aria-label="Open Xiang Kueh case study">
+          <div class="past-thumb">
+            <img src="assets/thumbnails/xiang-kueh.png" alt="Xiang Kueh" loading="lazy">
+          </div>
+          <div class="past-label">Xiang Kueh</div>
+          <div class="past-sublabel">Reimagining kueh-making mould</div>
+        </button>
+
+        <button class="past-card" onclick="openModal('modal-past-3')" aria-label="Open Move case study">
+          <div class="past-thumb">
+            <img src="assets/thumbnails/move.png" alt="Move — open data service design" loading="lazy">
+          </div>
+          <div class="past-label">Move</div>
+          <div class="past-sublabel">Designing with open data</div>
+        </button>
       </div>
     </div>
   </section>
@@ -2288,6 +2423,141 @@ In addition, PAYG roaming is given equal or greater visual prominence than roami
               promotional campaigns by surfacing relevant rewards directly within the app.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Past 1: Rentground Branding -->
+  <div class="modal-overlay" id="modal-past-1" onclick="closeModalOutside(event)">
+    <div class="modal-container">
+      <div class="modal-scroll">
+        <button class="modal-close" onclick="closeModal('modal-past-1')" aria-label="Close">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4l10 10M14 4L4 14" />
+          </svg>
+        </button>
+        <img class="modal-hero-img" src="assets/projects/rentground/hero.png" alt="Rentground branding hero" loading="lazy">
+        <h2 class="modal-title">Rentground Branding</h2>
+        <p class="modal-subtitle">Brand identity for a startup rental marketplace.</p>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">About this project</h3>
+          <p>This branding project was created for a startup rental marketplace focused on building a trustworthy and approachable platform identity. The scope of the project included developing the brand colour palette, crafting a tagline that reflects the brand vision, and establishing a usage guide to ensure consistency across digital touchpoints and communications.</p>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Showcase</h3>
+          <img class="modal-img" src="assets/projects/rentground/showcase-2.png" alt="Rentground brand visual" loading="lazy">
+          <img class="modal-img" src="assets/projects/rentground/showcase-3.png" alt="Rentground brand visual" loading="lazy">
+          <img class="modal-img" src="assets/projects/rentground/showcase-4.png" alt="Rentground brand visual" loading="lazy">
+          <img class="modal-img" src="assets/projects/rentground/showcase-5.png" alt="Rentground brand visual" loading="lazy">
+          <img class="modal-img" src="assets/projects/rentground/showcase-6.png" alt="Rentground brand visual" loading="lazy">
+          <img class="modal-img" src="assets/projects/rentground/showcase-10.png" alt="Rentground brand visual" loading="lazy">
+        </div>
+
+        <p class="modal-credit">Designed with Karen Gan · 2022</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Past 2: Xiang Kueh -->
+  <div class="modal-overlay" id="modal-past-2" onclick="closeModalOutside(event)">
+    <div class="modal-container">
+      <div class="modal-scroll">
+        <button class="modal-close" onclick="closeModal('modal-past-2')" aria-label="Close">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4l10 10M14 4L4 14" />
+          </svg>
+        </button>
+        <img class="modal-hero-img" src="assets/projects/xiang-kueh/hero.png" alt="Xiang Kueh hero" loading="lazy">
+        <h2 class="modal-title">Xiang Kueh</h2>
+        <p class="modal-subtitle">Reimagining the kueh-making mould as a vessel for blessings.</p>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">About this project</h3>
+          <p>This project explores the phenomenon of casting and moulding in product manufacturing and culinary applications. It reimagines what constitutes a mould in the traditional kueh-making process.</p>
+          <p>'Xiang' means auspicious in Chinese. Xiang Kueh is a re-conceptualisation of Steamed Kueh Lapis that is inspired by how it is consumed, layer by layer. Embedded with messages, each layer of Xiang Kueh reveals something different for joyous occasions.</p>
+        </div>
+
+        <div class="modal-section">
+          <img class="modal-img" src="assets/projects/xiang-kueh/layers.gif" alt="Xiang Kueh layers revealing blessings" loading="lazy">
+          <p>The layers are embedded with auspicious blessings such as '福寿安康' and '步步高升' — longevity and continuous advancement in life.</p>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">The Kueh Making Process</h3>
+          <img class="modal-img" src="assets/projects/xiang-kueh/process-1.png" alt="Kueh making process" loading="lazy">
+          <img class="modal-img" src="assets/projects/xiang-kueh/process-2.png" alt="Kueh making process" loading="lazy">
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">The Moulding Kit</h3>
+          <img class="modal-img" src="assets/projects/xiang-kueh/moulding-kit.png" alt="Xiang Kueh moulding kit" loading="lazy">
+          <p>The moulding kit for Xiang Kueh comes in two parts — food-grade stencils and an airbrush for the inking technique, as well as a wave-pattern cutter for the final form of the kueh.</p>
+        </div>
+
+        <p class="modal-credit">Designed with Claudia Goh for 'C for Cast' Design Studio Project · 2021. Special thanks to Hans Tan & Stacey Yip.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Past 3: Move -->
+  <div class="modal-overlay" id="modal-past-3" onclick="closeModalOutside(event)">
+    <div class="modal-container">
+      <div class="modal-scroll">
+        <button class="modal-close" onclick="closeModal('modal-past-3')" aria-label="Close">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4l10 10M14 4L4 14" />
+          </svg>
+        </button>
+        <img class="modal-hero-img" src="assets/projects/move/hero.png" alt="Move hero" loading="lazy">
+        <h2 class="modal-title">Move</h2>
+        <p class="modal-subtitle">Designing with open data to improve everyday travel.</p>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">About this project</h3>
+          <p>We live in a data-driven world, but are all data meaningful? When used in appropriate contexts, data can become valuable as it generates new insights and helps us make data-driven decisions in life. This project explores using Open Data as design materials to create a meaningful service that improves the everyday life of people.</p>
+          <p>My team looked into the common frustrations faced by people when travelling from one place to another, analysed the data available for use, and brainstormed features that would improve their travelling experience.</p>
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Research</h3>
+          <p>A survey was conducted to identify the pain points faced by price-sensitive users.</p>
+          <img class="modal-img" src="assets/projects/move/painpoints.png" alt="User pain points" loading="lazy">
+          <img class="modal-img" src="assets/projects/move/survey-insights.png" alt="Survey insights" loading="lazy">
+          <img class="modal-img" src="assets/projects/move/data-design.png" alt="Data as design material" loading="lazy">
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">The Solution</h3>
+          <img class="modal-img" src="assets/projects/move/solution.png" alt="Move solution overview" loading="lazy">
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Feature 1 — Move saver</h3>
+          <p>Move compares prices across private hire companies and identifies nearby pick-up points that offer a cheaper ride to your destination.</p>
+          <img class="modal-img" src="assets/projects/move/feature-1.png" alt="Feature 1 — Cheaper rides" loading="lazy">
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Feature 2 — Fare forecast</h3>
+          <p>By combining weather and traffic data, Move identifies private hire price fluctuations and informs you of the best time to book a ride.</p>
+          <img class="modal-img" src="assets/projects/move/feature-2.png" alt="Feature 2 — Best time to book" loading="lazy">
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Feature 3 — Personalised public transport experience</h3>
+          <p>Move personalises your public transport journey experience.</p>
+          <img class="modal-img" src="assets/projects/move/feature-3.png" alt="Feature 3 — Personalised public transport" loading="lazy">
+        </div>
+
+        <div class="modal-section">
+          <h3 class="modal-section-title">Feature 4 — Travel expense insights</h3>
+          <p>Move tracks your travel expenses and provides insights into your travel habits.</p>
+          <img class="modal-img" src="assets/projects/move/feature-4.png" alt="Feature 4 — Travel expense insights" loading="lazy">
+        </div>
+
+        <p class="modal-credit">A collaborative project with GovTech. Designed with Ng Ai Ling, Felicia Lee & Chan Botter for 'Design with Open Data' Design Studio Project · 2019. Special thanks to Dr. Jung-Joo Lee & Yuta Nakayama.</p>
       </div>
     </div>
   </div>
